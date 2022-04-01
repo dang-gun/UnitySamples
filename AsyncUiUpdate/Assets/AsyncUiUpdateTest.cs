@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -6,38 +6,38 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// https://github.com/PimDeWitte/UnityMainThreadDispatcher/blob/master/UnityMainThreadDispatcher.cs
+/// ìœ ë‹ˆí‹° ë¹„ë™ê¸° UI ì—…ë°ì´íŠ¸ í…ŒìŠ¤íŠ¸ í”„ë¡œì íŠ¸
 /// </summary>
 public class AsyncUiUpdateTest : MonoBehaviour
 {
 
     /// <summary>
-    /// µ¿±â UI
+    /// ë™ê¸° UI
     /// </summary>
     public Text txtNormal;
     /// <summary>
-    /// ºñµ¿±â UI
+    /// ë¹„ë™ê¸° UI
     /// </summary>
     public Text txtAsync;
 
     /// <summary>
-    /// ºñµ¿±â ¸ÅÀÎ ¾²·¡µå UI
+    /// ë¹„ë™ê¸° ë§¤ì¸ ì“°ë˜ë“œ UI
     /// </summary>
     public Text txtAsyncMain;
 
     /// <summary>
-    /// UnityMainThreadDispatcher ÀÌ¿ë
+    /// UnityMainThreadDispatcher ì´ìš©
     /// </summary>
     public Text txtUnityMainThreadDispatcher;
 
 
     /// <summary>
-    /// µ¿ÀÛ¿ë ¹öÆ°
+    /// ë™ì‘ìš© ë²„íŠ¼
     /// </summary>
     public Button btnGo;
 
     /// <summary>
-    /// ¾×¼ÇÀ» ´ã¾ÆµÑ Å¥
+    /// ì•¡ì…˜ì„ ë‹´ì•„ë‘˜ í
     /// </summary>
     private Queue<Action> m_queueAction = new Queue<Action>();
 
@@ -70,7 +70,7 @@ public class AsyncUiUpdateTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Å¥¿¡ ¾×¼ÇÀÌ ½×¿©ÀÖÀ¸¸é µ¿ÀÛ ½ÃÅ²´Ù.
+        //íì— ì•¡ì…˜ì´ ìŒ“ì—¬ìˆìœ¼ë©´ ë™ì‘ ì‹œí‚¨ë‹¤.
         while (m_queueAction.Count > 0)
         {
             m_queueAction.Dequeue().Invoke();
@@ -79,14 +79,14 @@ public class AsyncUiUpdateTest : MonoBehaviour
 
 public void GoCall()
 {
-    //ÀÏ¹İÀûÀÎ ÇÒ´ç
+    //ì¼ë°˜ì ì¸ í• ë‹¹
     this.txtNormal.text = "txtNormal change! 101";
 
 
-    //¸ŞÀÎ ¾²·¹µå ¾Æ´Ñ ¿¡·¯¸¦ À§ÇÑ ¾²·¹µå
+    //ë©”ì¸ ì“°ë ˆë“œ ì•„ë‹Œ ì—ëŸ¬ë¥¼ ìœ„í•œ ì“°ë ˆë“œ
     Thread thread = new Thread(()=> 
     {
-        //Å¥¿¡ ¾×¼ÇÀ» ³Ö´Â´Ù.
+        //íì— ì•¡ì…˜ì„ ë„£ëŠ”ë‹¤.
         m_queueAction.Enqueue(() => 
         {
             this.txtAsyncMain.text = "txtAsyncMain change! 103";
@@ -98,7 +98,7 @@ UnityMainThreadDispatcher.Instance().Enqueue(() =>
         = "txtUnityMainThreadDispatcher change! 104";
 });
 
-        //¸ŞÀÎ ¾²·¡¾Æ´Ï¶ó°í ¿¡·¯
+        //ë©”ì¸ ì“°ë˜ì•„ë‹ˆë¼ê³  ì—ëŸ¬
         this.txtAsync.text = "txtAsync change! 102";
     });
     thread.Start();

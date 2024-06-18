@@ -81,23 +81,23 @@ public class Addressable_OneAsync : MonoBehaviour
     public void NewInstance(string sKeyPath)
     {
         //위치 정보 생성
-        Vector3 v3Temp = new Vector3(Random.Range(-5f, 5f), Random.Range(-3f, 3f), Random.Range(-5f, 5f));
+        Vector3 v3Start = new Vector3(Random.Range(-5f, 5f), Random.Range(-3f, 3f), Random.Range(-5f, 5f));
 
-        //프리팹을 메모리에 생성 시작
-        Addressables.InstantiateAsync(sKeyPath, v3Temp, Quaternion.identity).Completed 
+        //프리팹의 인스턴스를 생성하여 개층 구조(화면)에 추가한다.(= 메모리에 로드)
+        Addressables.InstantiateAsync(sKeyPath, v3Start, Quaternion.identity).Completed 
             += (handle) => 
             {
                 if (handle.Status == AsyncOperationStatus.Succeeded)
                 {
 
                     //생성된 개체 로드
-                    GameObject newTemp = handle.Result;
+                    GameObject newGO = handle.Result;
 
                     //테스트용 텍스트 출력
-                    PrefabTest temp = newTemp.GetComponentInChildren<PrefabTest>();
-                    temp.TextMesh.text = (++TestCount).ToString();
+                    PrefabTest PrefabTemp = newGO.GetComponentInChildren<PrefabTest>();
+                    PrefabTemp.TextMesh.text = (++TestCount).ToString();
                     //생성된 인스턴스의 리스트를 별도로 관리한다.
-                    this.InstanceList.Add(newTemp);
+                    this.InstanceList.Add(newGO);
                 }
                 else
                 {
@@ -118,7 +118,7 @@ public class Addressable_OneAsync : MonoBehaviour
         }
 
 
-        var index = this.InstanceList.Count - 1;
+        int index = this.InstanceList.Count - 1;
         ////Addressables를 이용한 인스턴스 제거
         Addressables.ReleaseInstance(this.InstanceList[index]);
         this.InstanceList.RemoveAt(index);

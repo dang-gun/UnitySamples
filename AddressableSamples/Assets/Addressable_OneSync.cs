@@ -47,13 +47,14 @@ public class Addressable_OneSync : MonoBehaviour
             findData.KeyPath = sKeyPath;
 
             //프리팹 로드 시작
-            var asset = Addressables.LoadAssetAsync<GameObject>(sKeyPath);
-            GameObject goTemp = asset.WaitForCompletion();
+            AsyncOperationHandle<GameObject> loadAsset 
+                = Addressables.LoadAssetAsync<GameObject>(sKeyPath);
+            GameObject loadGO = loadAsset.WaitForCompletion();
 
-            if (asset.Status == AsyncOperationStatus.Succeeded)
+            if (loadAsset.Status == AsyncOperationStatus.Succeeded)
             {
                 //프리팹 저장
-                findData.Prefab = asset.Result;
+                findData.Prefab = loadAsset.Result;
                 //로드된 리스트에 추가
                 this.PrefabInsList.Add(findData);
                 Debug.Log("GameObject 로드 성공!");
@@ -74,30 +75,30 @@ public class Addressable_OneSync : MonoBehaviour
     public GameObject NewInstance(string sKeyPath)
     {
         //위치 정보 생성
-        Vector3 v3Temp = new Vector3(Random.Range(-5f, 5f), Random.Range(-3f, 3f), Random.Range(-5f, 5f));
+        Vector3 v3Start = new Vector3(Random.Range(-5f, 5f), Random.Range(-3f, 3f), Random.Range(-5f, 5f));
 
-        //프리팹을 메모리에 로드한 결과
-        AsyncOperationHandle<GameObject> prefabLoad
-            = Addressables.InstantiateAsync(sKeyPath, v3Temp, Quaternion.identity);
+        //프리팹의 인스턴스를 생성하여 개층 구조(화면)에 추가한다.(= 메모리에 로드)
+        AsyncOperationHandle<GameObject> prefabNew
+            = Addressables.InstantiateAsync(sKeyPath, v3Start, Quaternion.identity);
 
-        //로드 시도
-        GameObject newTemp = prefabLoad.WaitForCompletion();
+        //생성 시도
+        GameObject newGO = prefabNew.WaitForCompletion();
 
-        if (prefabLoad.Status == AsyncOperationStatus.Succeeded)
-        {//로드 성공
+        if (prefabNew.Status == AsyncOperationStatus.Succeeded)
+        {//생성 성공
 
             //테스트용 텍스트 출력
-            PrefabTest temp = newTemp.GetComponentInChildren<PrefabTest>();
-            temp.TextMesh.text = (++TestCount).ToString();
+            PrefabTest PrefabTemp = newGO.GetComponentInChildren<PrefabTest>();
+            PrefabTemp.TextMesh.text = (++TestCount).ToString();
             //생성된 인스턴스의 리스트를 별도로 관리한다.
-            this.InstanceList.Add(newTemp);
+            this.InstanceList.Add(newGO);
         }
         else
         {
             throw new System.Exception("프리팹 인스턴스 생성 실패 : " + sKeyPath);
         }
 
-        return newTemp;
+        return newGO;
     }
 
 
@@ -111,8 +112,8 @@ public class Addressable_OneSync : MonoBehaviour
             return;
         }
 
-
-        var index = this.InstanceList.Count - 1;
+        //맨 뒤 인덱스
+        int index = this.InstanceList.Count - 1;
         //Addressables를 이용한 인스턴스 제거
         Addressables.ReleaseInstance(this.InstanceList[index]);
         this.InstanceList.RemoveAt(index);

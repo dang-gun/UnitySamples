@@ -88,8 +88,8 @@ public class Addressable_OneSync : MonoBehaviour
         {//생성 성공
 
             //테스트용 텍스트 출력
-            PrefabTest PrefabTemp = newGO.GetComponentInChildren<PrefabTest>();
-            PrefabTemp.TextMesh.text = (++TestCount).ToString();
+            PrefabTest prefabTemp = newGO.GetComponentInChildren<PrefabTest>();
+            prefabTemp.TextMesh.text = (++TestCount).ToString();
             //생성된 인스턴스의 리스트를 별도로 관리한다.
             this.InstanceList.Add(newGO);
         }

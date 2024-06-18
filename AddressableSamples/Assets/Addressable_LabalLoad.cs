@@ -44,8 +44,8 @@ public class Addressable_LabalLoad : MonoBehaviour
         Addressables.LoadResourceLocationsAsync(AssetLabel.labelString).Completed +=
             (handle) =>
             {
-                LocationList = handle.Result;
-                Debug.Log("GetLocations : " + LocationList.Count);
+                this.LocationList = handle.Result;
+                Debug.Log("GetLocations : " + this.LocationList.Count);
             };
     }
 
@@ -58,18 +58,18 @@ public class Addressable_LabalLoad : MonoBehaviour
         //랜덤한 경로 한개 추출
         IResourceLocation location = LocationList[Random.Range(0, LocationList.Count)];
         //위치 정보 생성
-        Vector3 v3Temp = new Vector3(Random.Range(-5f, 5f), Random.Range(-3f, 3f), Random.Range(-5f, 5f));
+        Vector3 v3Start = new Vector3(Random.Range(-5f, 5f), Random.Range(-3f, 3f), Random.Range(-5f, 5f));
 
         //경로로 GameObject를 생성한다.
         //InstantiateAsync는 UnityEngine.Instantiate와 동일한 동작을 한다.
         //단지 Addressables가 관리하는 자원을 복사하는 것이라 Addressables의 관리를 받을 수 있다.
         //(예> Release)
-        Addressables.InstantiateAsync(location, v3Temp, Quaternion.identity).Completed 
+        Addressables.InstantiateAsync(location, v3Start, Quaternion.identity).Completed 
             +=(handle) =>
             {
                 ///테스트용 텍스트 출력
-                PrefabTest temp = handle.Result.GetComponentInChildren<PrefabTest>();
-                temp.TextMesh.text = (++TestCount).ToString();
+                PrefabTest prefabTemp = handle.Result.GetComponentInChildren<PrefabTest>();
+                prefabTemp.TextMesh.text = (++TestCount).ToString();
 
                 // 생성된 개체의 참조값 캐싱
                 this.GameObjectInstanceList.Add(handle.Result);

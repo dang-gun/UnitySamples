@@ -152,7 +152,7 @@ public class Addressable_OneSync : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
-            string sKeyPath = "Assets/Prefabs/Test2/Sphere3.prefab";
+            string sKeyPath = "Assets/Prefabs/Test2/Sphere2.prefab";
             this.LoadPrefab(sKeyPath);
             this.NewInstance(sKeyPath);
         }

@@ -10,34 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: NewPrefab2
+  m_Name: NewPrefab4
   m_EditorClassIdentifier: 
-  m_GroupName: NewPrefab2
+  m_GroupName: NewPrefab4
   m_Data:
     m_SerializedData: []
-  m_GUID: f2c1a7be9c8ec0c4dbe7fb92496b9958
+  m_GUID: d38a34720133bad4c96c144803e9e0dd
   m_SerializeEntries:
-  - m_GUID: a72a370e20beb2140b53cdbbc7ace69b
-    m_Address: Assets/Prefabs/Test2/Capsule2.prefab
+  - m_GUID: 9fac4d7fcb659eb48ae6f356e82ceb59
+    m_Address: Assets/Prefabs/Test4/Capsule4.prefab
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - NewPrefabLabel2
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1dd146c70f83fb440846040e4a5cb0a7
-    m_Address: Assets/Prefabs/Test2/Cube2.prefab
+  - m_GUID: 1b267e5b809545a44a313227a150454d
+    m_Address: Assets/Prefabs/Test4/Cube4.prefab
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - NewPrefabLabel2
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7dea625b310ad9c45a0716b9ef4f4a94
-    m_Address: Assets/Prefabs/Test2/Sphere2.prefab
+  - m_GUID: efc2ebe7ea0e865468b8713db8ce289b
+    m_Address: Assets/Prefabs/Test4/Sphere4.prefab
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - NewPrefabLabel2
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: a1236b97134cc224eaa1556e61347ba6, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 134940a36e70b9445b39e4f83cf3d520, type: 2}
-    - {fileID: 11400000, guid: 239be9b0e346cda4e958e79038a7f7df, type: 2}
+    - {fileID: 11400000, guid: 77fc6b4fad643cc41a14c7e4abb1e542, type: 2}
+    - {fileID: 11400000, guid: 371dbb0dfa307404d91ff4d16b95082f, type: 2}

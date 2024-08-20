@@ -39,7 +39,7 @@ public class MainController : MonoBehaviour
     /// 미니맵 줌
     /// </summary>
     //public float Zoom_Now { get; set; } = 0f;
-    public float Zoom_Now { get; set; } = 5.5f;
+    public float Zoom_Now { get; set; } = 7.0f;
 
 
     /// <summary>
@@ -106,23 +106,24 @@ public class MainController : MonoBehaviour
         Vector3 vecTemp
             = new Vector2(eventData.position.x - this.MiniMap_Offset.x
                             , this.MiniMap_Size.y + (eventData.position.y - this.MiniMap_Offset.y));
-        Instantiate(TestPrefab1, vecTemp, Quaternion.identity, this.AddGroup.transform);
-        Debug.Log("오브젝트1 " + vecTemp);
+        Vector3 worldPosition = this.gameObject.transform.TransformPoint(vecTemp);
+        Instantiate(TestPrefab1, worldPosition, Quaternion.identity, this.AddGroup.transform);
+        Debug.Log("오브젝트1 " + vecTemp + ", " + worldPosition);
 
 
 
         // 미니맵의 RectTransform을 통해 클릭 위치를 가져옵니다.
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(RawImageRect, eventData.position, eventData.pressEventCamera, out Vector2 localPoint);
+        //RectTransformUtility.ScreenPointToLocalPointInRectangle(RawImageRect, eventData.position, eventData.pressEventCamera, out Vector2 localPoint);
 
-        // 미니맵의 클릭 위치를 월드 좌표로 변환합니다.
-        float worldX = (localPoint.x / RawImageRect.rect.width) * (Camera_MiniMap.orthographicSize * 2) - (Camera_MiniMap.orthographicSize);
-        float worldY = (localPoint.y / RawImageRect.rect.height) * (Camera_MiniMap.orthographicSize * 2) - (Camera_MiniMap.orthographicSize);
+        //// 미니맵의 클릭 위치를 월드 좌표로 변환합니다.
+        //float worldX = (localPoint.x / RawImageRect.rect.width) * (Camera_MiniMap.orthographicSize * 2) - (Camera_MiniMap.orthographicSize);
+        //float worldY = (localPoint.y / RawImageRect.rect.height) * (Camera_MiniMap.orthographicSize * 2) - (Camera_MiniMap.orthographicSize);
 
-        // 카메라의 Z축에 따라 확대/축소를 반영한 최종 월드 좌표를 계산합니다.
-        Vector3 spawnPosition = new Vector3(worldX + Camera_MiniMap.transform.position.x, worldY + Camera_MiniMap.transform.position.y, 0);
+        //// 카메라의 Z축에 따라 확대/축소를 반영한 최종 월드 좌표를 계산합니다.
+        //Vector3 spawnPosition = new Vector3(worldX + Camera_MiniMap.transform.position.x, worldY + Camera_MiniMap.transform.position.y, 0);
 
-        // 오브젝트를 생성합니다.
-        Instantiate(TestPrefab2, spawnPosition, Quaternion.identity, this.AddGroup.transform);
+        //// 오브젝트를 생성합니다.
+        //Instantiate(TestPrefab2, spawnPosition, Quaternion.identity, this.AddGroup.transform);
         //Debug.Log("오브젝트2 " + spawnPosition);
 
         // 클릭된 위치를 계산
@@ -212,14 +213,14 @@ public class MainController : MonoBehaviour
         }
 
         // 마우스 왼쪽 버튼 클릭 확인
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    // 화면 좌표를 월드 좌표로 변환
-        //    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    // 프리팹 생성
-        //    Instantiate(this.TestPrefab, mousePosition, Quaternion.identity);
-        //    Debug.Log("클릭된 좌표1: " + mousePosition + ", " + Input.mousePosition);
-        //}
+        if (Input.GetMouseButtonDown(0))
+        {
+            // 화면 좌표를 월드 좌표로 변환
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            // 프리팹 생성
+            Instantiate(this.TestPrefab2, mousePosition, Quaternion.identity);
+            Debug.Log("클릭된 좌표1: " + mousePosition + ", " + Input.mousePosition);
+        }
     }
 
     void LateUpdate()

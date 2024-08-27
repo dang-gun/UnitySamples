@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 578168529}
   - component: {fileID: 578168527}
   - component: {fileID: 578168526}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TestOrb_Click
   m_TagString: Untagged
   m_Icon: {fileID: 0}

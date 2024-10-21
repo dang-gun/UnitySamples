@@ -7,17 +7,17 @@ using TMPro;
 
 public class ItemObjectController : MonoBehaviour
 {
-    #region ¿ÜºÎ¿¡¼­ ¿¬°áÇÒ ÀÌº¥Æ®
+    #region ì™¸ë¶€ì—ì„œ ì—°ê²°í•  ì´ë²¤íŠ¸
     /// <summary>
-    /// ¾ÆÀÌÅÛ Å¬¸¯ÇßÀ»¶§ ÀÌº¥Æ® Àü´ŞÀ» À§ÇÑ ´ë¸®ÀÚ
+    /// ì•„ì´í…œ í´ë¦­í–ˆì„ë•Œ ì´ë²¤íŠ¸ ì „ë‹¬ì„ ìœ„í•œ ëŒ€ë¦¬ì
     /// </summary>
     public delegate void ItemClickDelegate(ItemObjectController contThis);
     /// <summary>
-    /// ¾ÆÀÌÅÛÀ» Å¬¸¯ÇßÀ»¶§ ¹ß»ıÇÒ ÀÌº¥Æ®
+    /// ì•„ì´í…œì„ í´ë¦­í–ˆì„ë•Œ ë°œìƒí•  ì´ë²¤íŠ¸
     /// </summary>
     public ItemClickDelegate OnItemClick;
     /// <summary>
-    /// ¾ÆÀÌÅÛÀ» Å¬¸¯ÇßÀ»¶§ ¹ß»ıÇÒ ÀÌº¥Æ® È£Ãâ
+    /// ì•„ì´í…œì„ í´ë¦­í–ˆì„ë•Œ ë°œìƒí•  ì´ë²¤íŠ¸ í˜¸ì¶œ
     /// </summary>
     private void OnItemClickCall()
     {
@@ -30,22 +30,22 @@ public class ItemObjectController : MonoBehaviour
 
 
     /// <summary>
-    /// ÀüÃ¼ ¿µ¿ª
+    /// ì „ì²´ ì˜ì—­
     /// </summary>
     public Button Item;
     
 
     /// <summary>
-    /// Á¦¸ñ
+    /// ì œëª©
     /// </summary>
     public TextMeshProUGUI Title;
     
     /// <summary>
-    /// ÀÎÆ÷ ÀÌ¹ÌÁö
+    /// ì¸í¬ ì´ë¯¸ì§€
     /// </summary>
     public Image InfoImage;
     /// <summary>
-    /// Å©·¹µ÷ ÀÌ¹ÌÁö
+    /// í¬ë ˆë”§ ì´ë¯¸ì§€
     /// </summary>
     public Image CreditImage;
 
@@ -53,22 +53,22 @@ public class ItemObjectController : MonoBehaviour
 
     void Awake()
     {
-        //½ºÅ©¸³Æ®¿¡¼­ °³Ã¼ Ã£±â
+        //ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ê°œì²´ ì°¾ê¸°
 
-        //ÀÌ ¾ÆÀÌÅÛÀÇ ¸ŞÀÎ ¹öÆ°
+        //ì´ ì•„ì´í…œì˜ ë©”ì¸ ë²„íŠ¼
         this.Item = GetComponent<Button>();
         this.Item.onClick.AddListener(OnItemClickCall);
 
-        //Á¦¸ñ ÅØ½ºÆ®
+        //ì œëª© í…ìŠ¤íŠ¸
         this.Title 
             = this.transform.Find("BtnText")
                     .GetComponent<TextMeshProUGUI>();
 
-        //ÀÎÆ÷ ÀÌ¹ÌÁö
+        //ì¸í¬ ì´ë¯¸ì§€
         this.InfoImage
             = this.transform.Find("InfoImage")
                     .GetComponent<Image>();
-        //Å©·¹µ÷ ÀÌ¹ÌÁö
+        //í¬ë ˆë”§ ì´ë¯¸ì§€
         this.CreditImage
             = this.transform.Find("CreditImage")
                     .GetComponent<Image>();

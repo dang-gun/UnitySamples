@@ -9,45 +9,45 @@ using UnityEngine.UI;
 public class ItemManagerController : MonoBehaviour
 {
     /// <summary>
-    /// ¾ÆÀÌÅÛÀ¸·Î »ç¿ëÇÒ ÇÁ¸®ÆÕ
+    /// ì•„ì´í…œìœ¼ë¡œ ì‚¬ìš©í•  í”„ë¦¬íŒ¹
     /// </summary>
     public GameObject ItemPrefab;
 
     /// <summary>
-    /// °ü¸®ÁßÀÎ ¾ÆÀÌÅÛ ¸®½ºÆ®
+    /// ê´€ë¦¬ì¤‘ì¸ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸
     /// </summary>
     private List<ItemObjectController> ItemList
         = new List<ItemObjectController>();
 
-    #region UI ¿¬°á¿ë °³Ã¼
+    #region UI ì—°ê²°ìš© ê°œì²´
 
     /// <summary>
-    /// ¾ÆÀÌÅÛÀ» Ç¥½ÃÇÒ ÄÁÅÙÃ÷ ¿µ¿ª
+    /// ì•„ì´í…œì„ í‘œì‹œí•  ì»¨í…ì¸  ì˜ì—­
     /// </summary>
     public GameObject ListView_Content;
 
 
     /// <summary>
-    /// ¸®½ºÆ® ÀüÃ¼ ºñ¿ì±â ¹öÆ°
+    /// ë¦¬ìŠ¤íŠ¸ ì „ì²´ ë¹„ìš°ê¸° ë²„íŠ¼
     /// </summary>
     public Button ClearAllBtn;
 
     /// <summary>
-    /// ¸®½ºÆ® ³¡¿¡ ¾ÆÀÌÅÛ Ãß°¡ÇÏ´Â ¹öÆ°
+    /// ë¦¬ìŠ¤íŠ¸ ëì— ì•„ì´í…œ ì¶”ê°€í•˜ëŠ” ë²„íŠ¼
     /// </summary>
     public Button AddBtn;
     #endregion
 
     /// <summary>
-    /// »ı¼º½Ã »ç¿ëÇÒ Ä«¿îÅÍ
+    /// ìƒì„±ì‹œ ì‚¬ìš©í•  ì¹´ìš´í„°
     /// </summary>
     private int AddCount = 0;
     void Awake()
     {
         if(null == this.ItemPrefab)
-        {//ÇÁ¸®ÆÕÀ» ÁöÁ¤ÇÏÁö ¾Ê¾Ò´Ù.
+        {//í”„ë¦¬íŒ¹ì„ ì§€ì •í•˜ì§€ ì•Šì•˜ë‹¤.
 
-            //Á÷Á¢ °Ë»ö
+            //ì§ì ‘ ê²€ìƒ‰
             this.ItemPrefab
                 //= Resources.Load<GameObject>("ItemObject");
                 = AssetDatabase.LoadAssetAtPath<GameObject>("ItemObject");
@@ -55,7 +55,7 @@ public class ItemManagerController : MonoBehaviour
         
 
 
-        //UI ¿¬°á **********
+        //UI ì—°ê²° **********
         this.ListView_Content
             = GameObject.Find("List View")
                         .transform.Find("Viewport/Content")
@@ -84,31 +84,31 @@ public class ItemManagerController : MonoBehaviour
     }
 
     /// <summary>
-    /// ÀüÃ¼ ¸®½ºÆ®¸¦ ºñ¿î´Ù.
+    /// ì „ì²´ ë¦¬ìŠ¤íŠ¸ë¥¼ ë¹„ìš´ë‹¤.
     /// </summary>
     public void ItemList_ClearAll()
     {
-        //¸ğµç ÀÚ½ÄÀ» Ã£¾Æ ÆÄ±«ÇÑ´Ù.
+        //ëª¨ë“  ìì‹ì„ ì°¾ì•„ íŒŒê´´í•œë‹¤.
         foreach (Transform child in this.ListView_Content.transform)
         {
             Destroy(child.gameObject);
         }
 
-        //¸®½ºÆ®µµ ºñ¿î´Ù.
+        //ë¦¬ìŠ¤íŠ¸ë„ ë¹„ìš´ë‹¤.
         this.ItemList.Clear();
     }
 
     /// <summary>
-    /// ¸®½ºÆ®ÀÇ ³¡¿¡ ¾ÆÀÌÅÛÀ» ÇÏ³ª »ı¼ºÇÏ¿© ³Ö´Â´Ù.
+    /// ë¦¬ìŠ¤íŠ¸ì˜ ëì— ì•„ì´í…œì„ í•˜ë‚˜ ìƒì„±í•˜ì—¬ ë„£ëŠ”ë‹¤.
     /// </summary>
     public void ItemList_AddNew()
     {
-        //¾ÆÀÌÅÛÀ» »ı¼ºÇÑ´Ù. ****
+        //ì•„ì´í…œì„ ìƒì„±í•œë‹¤. ****
         ItemObjectController newItem
             = Instantiate(this.ItemPrefab)
                 .GetComponent<ItemObjectController>();
 
-        //¾ÆÀÌÅÛ Á¤º¸ ¼öÁ¤ ****
+        //ì•„ì´í…œ ì •ë³´ ìˆ˜ì • ****
         newItem.Title.text
             = string.Format("Add{0} : {1}"
                             , ++AddCount
@@ -122,10 +122,10 @@ public class ItemManagerController : MonoBehaviour
 
 
 
-        //¸®½ºÆ®¿¡ Ãß°¡ ****
+        //ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€ ****
         this.ItemList.Add(newItem);
 
-        //UI¿¡ Ãß°¡
+        //UIì— ì¶”ê°€
         newItem.gameObject.transform.SetParent(this.ListView_Content.transform);
     }
 }

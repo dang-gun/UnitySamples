@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
 
 /// <summary>
-/// ¸®½ºÆ® ºä1 ¸Ş´ÏÀú
+/// ë¦¬ìŠ¤íŠ¸ ë·°1 ë©”ë‹ˆì €
 /// </summary>
 public class ListView1Manager : ItemListUiInterface
 {
     /// <summary>
-    /// °ü¸®ÁßÀÎ µ¥ÀÌÅÍ¿Í UI ¸®½ºÆ®
+    /// ê´€ë¦¬ì¤‘ì¸ ë°ì´í„°ì™€ UI ë¦¬ìŠ¤íŠ¸
     /// </summary>
     public List<ListView1DataModel> ItemList = new List<ListView1DataModel>();
 
@@ -22,39 +23,73 @@ public class ListView1Manager : ItemListUiInterface
 
     }
 
+    public void AddItem(ItemDataModel dataItem)
+    {
+        //ë°ì´í„° ìƒì„±
+        ListView1DataModel newData = new ListView1DataModel();
+
+        //ë°ì´í„° ì €ì¥
+        newData.ItemData = dataItem;
+
+        //UI ìƒì„±
+        GameObject goNew
+            = GlobalStatic.MainCont
+                .Instance_New(ListView1Cont.ContentGo.transform);
+
+        //ì»¨íŠ¸ë¡¤ëŸ¬ ì €ì¥
+        newData.ItemCont = goNew.GetComponent<ItemObjectController>();
+        newData.ItemCont.DataSetting(newData.ItemData);
+        newData.ItemCont.OnItemClick 
+            += (dataItem) => 
+            {
+                //ì„ì‹œë¡œ í´ë¦­í•˜ë©´ ì§€ìš°ë„ë¡ êµ¬í˜„í•œë‹¤.
+                this.RemoveItem(dataItem);
+            };
+
+
+
+        //ë¦¬ìŠ¤íŠ¸ì— ì €ì¥
+        this.ItemList.Add(newData);
+    }
+
+    public void RemoveItem(ItemDataModel dataItem)
+    {
+        //ë°ì´í„° ê°œì²´ ê²€ìƒ‰
+        ListView1DataModel findData
+            = this.ItemList
+                .Where(w => w.ItemData == dataItem)
+                .FirstOrDefault();
+
+        if (null != findData) 
+        {//ê²€ìƒ‰ëœ ë°ì´í„°ê°€ ìˆë‹¤.
+
+            this.RemoveItem(findData);
+        }
+    }
+
+    /// <summary>
+    /// ì „ë‹¬ëœ ë·°ë°ì´í„°ë¥¼ ì§€ìš´ë‹¤.
+    /// </summary>
+    /// <param name="viewdataItem"></param>
+    public void RemoveItem(ListView1DataModel viewdataItem)
+    {
+        GlobalStatic.MainCont.Instance_Destroy(viewdataItem.ItemCont.gameObject);
+        this.ItemList.Remove(viewdataItem);
+    }
+
     public void Clear()
     {
-        //»ı¼ºµÈ °³Ã¼ ÆÄ±«
+        //ìƒì„±ëœ ê°œì²´ íŒŒê´´
         foreach(ListView1DataModel item in this.ItemList)
         {
             GlobalStatic.MainCont.Instance_Destroy(item.ItemCont.gameObject);
         }
 
-        //¸®½ºÆ® ºñ¿ì±â
+        //ë¦¬ìŠ¤íŠ¸ ë¹„ìš°ê¸°
         this.ItemList.Clear();
     }
 
-    public void AddItem(ItemDataModel dataItem)
-    {
-        //µ¥ÀÌÅÍ »ı¼º
-        ListView1DataModel newData = new ListView1DataModel();
-        
-        //µ¥ÀÌÅÍ ÀúÀå
-        newData.ItemData = dataItem;
-
-        //UI »ı¼º
-        GameObject goNew 
-            = GlobalStatic.MainCont
-                .Instance_New(ListView1Cont.ContentGo.transform);
-
-        //ÄÁÆ®·Ñ·¯ ÀúÀå
-        newData.ItemCont = goNew.GetComponent<ItemObjectController>();
-
-
-
-        //¸®½ºÆ®¿¡ ÀúÀå
-        this.ItemList.Add(newData);
-    }
+    
 
     
 }

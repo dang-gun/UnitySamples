@@ -24,16 +24,5 @@ public class ListView1Controller : MonoBehaviour
         this.ContentGo = this.transform.Find("Viewport/Content").gameObject;
     }
 
-    
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
 
 }

@@ -30,30 +30,17 @@ public class ItemObjectController : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// 이 콘트롤러와 연결된 데이터 개체(원본)
-    /// </summary>
-    private ItemDataModel ItemData_ori = null;
-    /// <summary>
     /// 이 콘트롤러와 연결된 데이터 개체
     /// </summary>
-    public ItemDataModel ItemData 
-    { 
-        get
-        {
-            return this.ItemData_ori;
-        }
-        set
-        { 
-            this.ItemData_ori = value;
-        }
-    }
+    public ItemDataModel ItemData { get; private set; }
+    
 
 
     /// <summary>
     /// 전체 영역
     /// </summary>
     public Button Item;
-    
+
 
     /// <summary>
     /// 제목
@@ -94,4 +81,20 @@ public class ItemObjectController : MonoBehaviour
                     .GetComponent<Image>();
     }
 
+    /// <summary>
+    /// 데이터를 저장하고 UI에 적용한다.
+    /// </summary>
+    /// <remarks>
+    /// 유니티에 라이프 사이클에 따라 'Awake'이전에 호출될 수 있다.<br />
+    /// 'Awake'보다 빠르게 호출되는 경우가 생긴다면 'UI에 적용'을 'Awake'에서 하도록 지연시켜야 한다.
+    /// </remarks>
+    /// <param name="dataItem"></param>
+    public void DataSetting(ItemDataModel dataItem)
+    {
+        this.ItemData = dataItem;
+
+        //UI에 적용
+        this.TitleText.text = this.ItemData.Title;
+        this.CreditImage.color = this.ItemData.CreditColor;
+    }
 }

@@ -4,17 +4,17 @@ using UnityEngine;
 
 
 /// <summary>
-/// ¸®½ºÆ®¿¡ Ãâ·ÂÇÒ ¾ÆÀÌÅÛ ÇÑ°³°¡ °¡Áö°í ÀÖ´Â µ¥ÀÌÅÍ
+/// ë¦¬ìŠ¤íŠ¸ì— ì¶œë ¥í•  ì•„ì´í…œ í•œê°œê°€ ê°€ì§€ê³  ìˆëŠ” ë°ì´í„°
 /// </summary>
 public class ItemDataModel
 {
     /// <summary>
-    /// Ç¥½ÃµÉ Á¦¸ñ
+    /// í‘œì‹œë  ì œëª©
     /// </summary>
     public string Title { get; set; }
 
     /// <summary>
-    /// Å©·¡µ÷ÀÇ »ö
+    /// í¬ë˜ë”§ì˜ ìƒ‰
     /// </summary>
     public Color CreditColor { get; set; }
 

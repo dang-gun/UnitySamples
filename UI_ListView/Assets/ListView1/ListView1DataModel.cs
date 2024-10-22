@@ -4,17 +4,17 @@ using UnityEngine;
 
 
 /// <summary>
-/// ¸®½ºÆ®ºä1¿¡ Ãâ·ÂÇÒ ¾ÆÀÌÅÛ ÇÑ°³°¡ °¡Áö°í ÀÖ´Â µ¥ÀÌÅÍ
+/// ë¦¬ìŠ¤íŠ¸ë·°1ì— ì¶œë ¥í•  ì•„ì´í…œ í•œê°œê°€ ê°€ì§€ê³  ìˆëŠ” ë°ì´í„°
 /// </summary>
 public class ListView1DataModel
 {
     /// <summary>
-    /// Ç¥½Ã¿¡ »ç¿ëµÈ µ¥ÀÌÅÍ
+    /// í‘œì‹œì— ì‚¬ìš©ëœ ë°ì´í„°
     /// </summary>
     public ItemDataModel ItemData { get; set; }
 
     /// <summary>
-    /// UI¿¡ »ı¼ºµÈ °³Ã¼ÀÇ ÄÁÆ®·Ñ·¯
+    /// UIì— ìƒì„±ëœ ê°œì²´ì˜ ì»¨íŠ¸ë¡¤ëŸ¬
     /// </summary>
     public ItemObjectController ItemCont { get; set; }
 

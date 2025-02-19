@@ -30,6 +30,14 @@ public class MainController : MonoBehaviour
                             .GetComponent<ListView1Controller>());
         ListViewList.Add(ListView1Mgr);
 
+        //리스트뷰2 메니저 생성
+        ListView2Manager ListView2Mgr
+            = new ListView2Manager(
+                GameObject.Find("Canvas").transform
+                            .Find("ListView2")
+                            .GetComponent<ListView2Controller>());
+        ListViewList.Add(ListView2Mgr);
+
     }
 
     

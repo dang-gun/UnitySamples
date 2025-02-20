@@ -6,7 +6,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ListView2Controller : MonoBehaviour
+/// <summary>
+/// 랩패널 스크롤 컨트롤러
+/// </summary>
+public class WrapScrollController : MonoBehaviour
 {
     /// <summary>
     /// 관리중인 아이템 리스트
@@ -21,7 +24,8 @@ public class ListView2Controller : MonoBehaviour
 
     void Awake()
     {
-        this.ContentGo = this.transform.Find("Viewport/Content/GridGroup").gameObject;
+        //this.ContentGo = this.transform.Find("Viewport/Content/GridGroup").gameObject;
+        this.ContentGo = this.transform.Find("Viewport/Content").gameObject;
     }
 
 

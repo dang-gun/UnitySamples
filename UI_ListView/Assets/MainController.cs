@@ -31,11 +31,11 @@ public class MainController : MonoBehaviour
         ListViewList.Add(ListView1Mgr);
 
         //리스트뷰2 메니저 생성
-        ListView2Manager ListView2Mgr
-            = new ListView2Manager(
+        WrapScrollManager ListView2Mgr
+            = new WrapScrollManager(
                 GameObject.Find("Canvas").transform
-                            .Find("ListView2")
-                            .GetComponent<ListView2Controller>());
+                            .Find("WrapScroll")
+                            .GetComponent<WrapScrollController>());
         ListViewList.Add(ListView2Mgr);
 
     }

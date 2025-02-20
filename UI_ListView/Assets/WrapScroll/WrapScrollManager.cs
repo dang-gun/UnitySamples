@@ -6,18 +6,18 @@ using UnityEngine;
 
 
 /// <summary>
-/// 리스트 뷰2 메니저
+/// 랩패널 스크롤에 메니저
 /// </summary>
-public class ListView2Manager : ItemListUiInterface
+public class WrapScrollManager : ItemListUiInterface
 {
     /// <summary>
     /// 관리중인 데이터와 UI 리스트
     /// </summary>
     public List<ListView1DataModel> ItemList = new List<ListView1DataModel>();
 
-    public ListView2Controller ListView2Cont = null;
+    public WrapScrollController ListView2Cont = null;
 
-    public ListView2Manager(ListView2Controller contListView2)
+    public WrapScrollManager(WrapScrollController contListView2)
     {
         this.ListView2Cont = contListView2;
 

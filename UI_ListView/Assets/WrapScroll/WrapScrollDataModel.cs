@@ -4,9 +4,9 @@ using UnityEngine;
 
 
 /// <summary>
-/// 리스트뷰1에 출력할 아이템 한개가 가지고 있는 데이터
+/// 랩패널 스크롤에 출력할 아이템 한개가 가지고 있는 데이터
 /// </summary>
-public class ListView2DataModel
+public class WrapScrollDataModel
 {
     /// <summary>
     /// 표시에 사용된 데이터
